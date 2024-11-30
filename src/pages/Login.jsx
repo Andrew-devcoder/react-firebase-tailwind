@@ -1,4 +1,36 @@
+import { useState } from "react";
+import { auth } from "../firebase/config";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+
+
 export default function Login() {
+
+	const [user, setUser] = useState({
+		email: '',
+		password: '',
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setUser((prevState) => ({
+			...prevState,
+			[name]: value,
+		}));
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
+			console.log('Користувач знайдений:', userCredential.user);
+		} catch (error) {
+			console.error('Помилка входу:', error.message);
+		}
+	};
+
+
 	return (
 		<>
 			{/*
@@ -32,6 +64,8 @@ export default function Login() {
 									id="email"
 									name="email"
 									type="email"
+									value={user.email}
+									onChange={handleChange}
 									required
 									autoComplete="email"
 									className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -55,6 +89,8 @@ export default function Login() {
 									id="password"
 									name="password"
 									type="password"
+									value={user.password}
+									onChange={handleChange}
 									required
 									autoComplete="current-password"
 									className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -64,6 +100,7 @@ export default function Login() {
 
 						<div>
 							<button
+								onClick={handleSubmit}
 								type="submit"
 								className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 							>
@@ -73,9 +110,9 @@ export default function Login() {
 					</form>
 
 					<p className="mt-10 text-center text-sm/6 text-gray-500">
-						Not a member?{' '}
+						New here? {' '}
 						<a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-							Start a 14 day free trial
+							Sign up for free!
 						</a>
 					</p>
 				</div>
