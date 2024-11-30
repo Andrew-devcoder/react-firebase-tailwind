@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { auth } from "../firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { loginUser } from "../redux/actions/authActions";
 
 
 
@@ -10,6 +11,8 @@ export default function Login() {
 		email: '',
 		password: '',
 	});
+
+	const [error, setError] = useState('');
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -21,12 +24,10 @@ export default function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		try {
-			const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
-			console.log('Користувач знайдений:', userCredential.user);
-		} catch (error) {
-			console.error('Помилка входу:', error.message);
+			await loginUser(user.email, user.password);
+		} catch (err) {
+			setError(err.message);
 		}
 	};
 
