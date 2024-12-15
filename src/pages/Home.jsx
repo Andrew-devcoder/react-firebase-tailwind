@@ -1,12 +1,8 @@
-import Header from "../components/Header/Header";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 export default function Home() {
-	return (
-		<>
-			<Header />
-			<div>
-				<h2>Welcome to Home Page</h2>
-			</div>
-		</>
-	);
+
+	return <div>Welcome to Home Page!</div>;
+
 }

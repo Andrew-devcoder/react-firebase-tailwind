@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { auth } from "../firebase/config";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { loginUser } from "../redux/actions/authActions";
-
-
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
-
 	const [user, setUser] = useState({
 		email: '',
 		password: '',
 	});
-
 	const [error, setError] = useState('');
+
+	const isAuth = useSelector((state) => !!state.user.uid);
+
+	if (isAuth) {
+		return <Navigate to="/" replace />;
+	}
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
