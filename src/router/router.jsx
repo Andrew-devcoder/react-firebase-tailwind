@@ -3,7 +3,8 @@ import Login from '../pages/Login';
 import Home from '../pages/Home';
 import Layout from '../components/Layout';
 import ErrorPage from '../pages/ErrorPage';
-import ProtectedRoute from '../components/ProtectedRoute.jsx';
+import ProtectedRoute from '../components/ProtectedRoute';
+import Registration from '../pages/Registration';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
 				/>
 			</Route>
 			<Route path="/login" element={<Login />} errorElement={<ErrorPage />} />
+			<Route path="/reg" element={<Registration />} errorElement={<ErrorPage />} />
 		</>
 	)
 );

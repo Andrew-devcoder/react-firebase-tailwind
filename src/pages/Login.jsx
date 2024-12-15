@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { loginUser } from "../redux/actions/authActions";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
 	const [user, setUser] = useState({
@@ -9,6 +9,8 @@ export default function Login() {
 		password: '',
 	});
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
+
 
 	const isAuth = useSelector((state) => !!state.user.uid);
 
@@ -33,6 +35,11 @@ export default function Login() {
 		}
 	};
 
+	const createNewAccount = (e) => {
+		e.preventDefault()
+		navigate('/reg', { replace: true });
+	}
+
 
 	return (
 		<>
@@ -44,7 +51,7 @@ export default function Login() {
 		  <body class="h-full">
 		  ```
 		*/}
-			<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+			<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 transition-opacity ease-in-out delay-150 duration-500">
 				<div className="sm:mx-auto sm:w-full sm:max-w-sm">
 					<img
 						alt="Your Company"
@@ -114,7 +121,11 @@ export default function Login() {
 
 					<p className="mt-10 text-center text-sm/6 text-gray-500">
 						New here? {' '}
-						<a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+						<a
+							onClick={createNewAccount}
+							href="#"
+							className="font-semibold text-indigo-600 hover:text-indigo-500"
+						>
 							Sign up for free!
 						</a>
 					</p>
