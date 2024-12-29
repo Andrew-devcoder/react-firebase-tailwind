@@ -31,6 +31,11 @@ export default function Registration() {
 		const newUserUid = await registrationUser(user.email, user.password);
 		const dataNewUser = await saveUserData(newUserUid, user)
 		console.log(dataNewUser)
+
+		if (dataNewUser) {
+			console.log(dataNewUser)
+			navigate('/login', { replace: true });
+		}
 	};
 
 	const loginAccount = (e) => {

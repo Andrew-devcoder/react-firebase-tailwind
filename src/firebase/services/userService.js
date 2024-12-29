@@ -9,6 +9,7 @@ export const saveUserData = async (uid, user) => {
 			email: user.email,
 		});
 		console.log('User data saved successfully.');
+		return true;
 	} catch (error) {
 		console.error('Error saving user data:', error);
 		throw error;
