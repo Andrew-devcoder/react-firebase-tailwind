@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { registrationUser } from '../firebase/services/authService'
+import { saveUserData } from '../firebase/services/userService';
 
 export default function Registration() {
 
@@ -26,11 +28,9 @@ export default function Registration() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			await loginUser(user.email, user.password);
-		} catch (err) {
-			setError(err.message);
-		}
+		const newUserUid = await registrationUser(user.email, user.password);
+		const dataNewUser = await saveUserData(newUserUid, user)
+		console.log(dataNewUser)
 	};
 
 	const loginAccount = (e) => {

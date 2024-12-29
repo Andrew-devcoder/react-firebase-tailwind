@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { loginUser } from "../redux/actions/authActions";
 import { useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { loginUser } from "../redux/actions/authActions";
+import { resetPassword } from "../firebase/services/authService";
 
 export default function Login() {
 	const [user, setUser] = useState({
@@ -38,6 +39,11 @@ export default function Login() {
 	const createNewAccount = (e) => {
 		e.preventDefault()
 		navigate('/reg', { replace: true });
+	}
+
+	const handleResetPassword = (e) => {
+		e.preventDefault()
+		resetPassword(user.email)
 	}
 
 
@@ -89,7 +95,11 @@ export default function Login() {
 									Password
 								</label>
 								<div className="text-sm">
-									<a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+									<a
+										href="#"
+										className="font-semibold text-indigo-600 hover:text-indigo-500"
+										onClick={handleResetPassword}
+									>
 										Forgot password?
 									</a>
 								</div>

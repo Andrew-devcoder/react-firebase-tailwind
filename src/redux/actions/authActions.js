@@ -1,3 +1,4 @@
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { signInUser, signOutUser } from '../../firebase/services/authService';
 import { clearUser, setUser } from '../slices/userSlice';
 import { store } from '../store';
