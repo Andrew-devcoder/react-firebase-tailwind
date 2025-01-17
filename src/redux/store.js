@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './slices/userSlice';
+import formReducer from './slices/formSlice';
 
 const persistConfig = {
 	key: 'root',
@@ -14,6 +15,7 @@ const persistedUserReducer = persistReducer(persistConfig, userReducer);
 export const store = configureStore({
 	reducer: {
 		user: persistedUserReducer,
+		form: formReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
