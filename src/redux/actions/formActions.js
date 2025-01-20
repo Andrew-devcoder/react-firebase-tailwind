@@ -28,6 +28,16 @@ export const submitForm = async () => {
 	console.log(state);
 	console.log(validate.matchPasswords(state.password, state.confirmPassword));
 
+	// const handleSubmit = async (user) => {
+	// 	const newUserUid = await registrationUser(user.email, user.password);
+	// 	const dataNewUser = await saveUserData(newUserUid, user)
+	// 	console.log(dataNewUser)
+
+	// 	if (dataNewUser) {
+	// 		navigate('/login', { replace: true });
+	// 	}
+	// };
+
 	// try {
 	// 	console.log('Form data submitted:', formData);
 	// 	resetFormFields();

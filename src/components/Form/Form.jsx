@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { InputField } from "../Input/InputField";
-import { resetFormFields, submitForm, updateFormField } from "../../redux/actions/formActions";
-import { useSelector } from "react-redux";
+import { resetFormFields, submitForm } from "../../redux/actions/formActions";
 
-export const Form = ({ onSubmit }) => {
+export const Form = () => {
 	const [loading, setLoading] = useState(false)
-	// const formData = useSelector((state) => state.form.formData);
 
 	const handleReset = () => {
 		resetFormFields();
@@ -14,8 +12,8 @@ export const Form = ({ onSubmit }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
-		// await onSubmit(formData);
 		await submitForm()
+
 		setLoading(false);
 	};
 
