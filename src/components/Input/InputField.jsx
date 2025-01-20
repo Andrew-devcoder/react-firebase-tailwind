@@ -9,6 +9,7 @@ export const InputField = ({ label, name, type = "text", autoComplete = undefine
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
+		console.log(name, value)
 		updateFormField(name, value);
 	};
 

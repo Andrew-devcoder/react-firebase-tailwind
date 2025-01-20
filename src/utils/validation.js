@@ -13,7 +13,7 @@ export const validate = {
 	},
 
 	password: (password) => {
-		const regex = /^[A-Za-z]+$/;
+		const regex = /^[A-Za-z0-9]+$/;
 		if (!regex.test(password)) return '';
 		if (password.length < 6) return 'Password must have at least 6 characters';
 		return null;

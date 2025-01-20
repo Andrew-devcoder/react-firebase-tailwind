@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 export const Form = ({ onSubmit }) => {
 	const [loading, setLoading] = useState(false)
-	const formData = useSelector((state) => state.form.formData);
+	// const formData = useSelector((state) => state.form.formData);
 
 	const handleReset = () => {
 		resetFormFields();
@@ -14,7 +14,8 @@ export const Form = ({ onSubmit }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
-		await onSubmit(formData);
+		// await onSubmit(formData);
+		await submitForm()
 		setLoading(false);
 	};
 
