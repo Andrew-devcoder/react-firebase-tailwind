@@ -8,9 +8,10 @@ export const updateFormField = (name, value) => {
 	const state = store.getState().form.formData;
 	const formData = { ...state, [name]: value };
 
-	const error = name == 'confirmPassword' ? validate.matchPasswords(formData.password, value) : validate[name](value);
+	if (name === 'password' && formData.confirmPassword != '')
+		store.dispatch(updateField({ fieldName: 'confirmPassword', value: '' }));
 
-	console.log('Dispatching updateError:', { fieldName: name, error });
+	const error = name == 'confirmPassword' ? validate.matchPasswords(formData.password, value) : validate[name](value);
 
 	store.dispatch(updateError({ fieldName: name, error }));
 };
